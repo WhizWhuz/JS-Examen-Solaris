@@ -10,9 +10,7 @@ const saturn = document.querySelector('.saturn')
 const uranus = document.querySelector('.uranus')
 const neptune = document.querySelector('.neptune')
 
-
 const planetArray = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
-
 
 // Query Selectors för Modal
 
@@ -68,43 +66,48 @@ const getInfo = async (apiKey) => {
     return solarInfo
 }
 
-// Info från Key
+// Sparar info från key i en variabel
 
 const displayInfo = async () => {
     const apiKey = await fetchKey();
 
     const solarInfo = await getInfo(apiKey);
 
-// Matchar indexen i Query Selector Array (från line 14) med Api array
+// Matchar indexen i Query Selector Array (från line 13) med API array
 
     for (let i = 0; i < solarInfo.length; i++) {
         const planetData = solarInfo[i];
         const planetElement = planetArray[i];
 
-// Om indexen är samma i båda arraysen så printas infon + öppnar Modal & döljer planeter
+// Loopar och matchar båda indexen, när de är samma i båda arraysen så printas infon + öppnar Modal & döljer planeter
 
         if (planetElement) {
 
             planetElement.addEventListener('click', () => {
-                solarSystem.style.visibility = 'hidden'
-                modal.style.display = 'flex'
+                solarSystem.style.visibility = 'hidden' // Gömmer planeterna (frontpage)
+                modal.style.display = 'flex'    // Öppnar Modal (info page) 
+
                 planetName.textContent = `${planetData.name}`
                 latinName.textContent = `${planetData.latinName}`
                 planetDesc.textContent = `${planetData.desc}`
                 tempDay.textContent = ` ${planetData.temp.day} °C`
                 tempNight.textContent = `${planetData.temp.night} °C`
                 
+            // Gör API numbers snyggare. Delar upp i dem istället för en klump
+
                 circumference.textContent = `${new Intl.NumberFormat('sv-SE', { useGrouping: true }).format(planetData.circumference)} km`;
                 distance.textContent = `${new Intl.NumberFormat('sv-SE', { useGrouping: true }).format(planetData.distance)} km`;
 
-                // Tar den planeten man klickar pås CSS class och lägger den på planeten som finns i Modal
+            // Lägger till white space (mellanrum) mellan varje måne, istället för en klump
+
+                moons.textContent = `${planetData.moons.join(', ')}`;
+                
+                // Kopierar planeten man klickar pås CSS class och lägger den på planeten som finns i Modal
 
                 planetModal.className = `${planetElement.className}`
 
+                    // Om planeten inte har en måne, säg att planten inte har någon istället för tomt
 
-                moons.textContent = `${planetData.moons.join(', ')}`;
-
-                    // Om planeten inte har en måne, säg att planten inte har någon istället för 
                     if (planetData.moons.length === 0) {
                         moons.textContent = `${planetData.name} har inga månar.`
                     }
@@ -114,6 +117,7 @@ const displayInfo = async () => {
                     if (planetElement === sun) {
                         distance.textContent = `☀️ ${planetData.name} är ${planetData.name} ☀️`
                     }
+
 
                 // Så styling funkar och ser bra ut
 
@@ -137,7 +141,8 @@ const displayInfo = async () => {
                 }
             })
 
-            
+        // User Alert om DOM index inte finns
+
         } else {
             alert(`No DOM for index: ${i}`);
         }
@@ -153,6 +158,6 @@ closeModalBtn.addEventListener('click', () => {
         mercury.style.marginLeft = '12em'
         sun.style.position = 'absolute'
         planetDesc.style.fontSize = "1.5em"
-} )
+})
 
 displayInfo()

@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="modal.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" defer></script>     <!-- defer gör så den väntar på att DOMen laddat klart innan JSen laddas -->
     <title>Examination</title>
 </head>
 <body>
 
+
+<header>
+    <h1>Solsystemet</h1>
+    <h2>Solaris</h2>
+</header>
+
+<!-- Bakgrunden samt alla planeter -->
 
     <section class="solarsystem">
         <figure class="sun"></figure>
@@ -25,14 +32,20 @@
         <figure class="neptune"></figure>
     </section>
 
-
+<!-- Modal som är gömd -->
 
     <section class="modalsite">
-        <button class ="closemodal"><img src="img/x.svg" alt=""></button>
+        <button class="closemodal"><img src="img/x.svg" alt=""></button>
         <figure id="zoomedplanet">
             <div class="ringzoomed"></div>
         </figure>
+
+<!-- Modalsite-background är stjärnorna som rör sig i bakgrunden på Modal (kolla modal.css för att se animationen -->
+
         <div class="modalsite-background"></div>
+
+<!-- Info Panelen som visar all information -->
+
         <article class="infopanel">
             <div class="planetbox">
                 <h1 class="planetname"></h1>
@@ -41,37 +54,30 @@
                 </span>
             </div>
 
-
-
             <div class="verticleline"></div>
-
-
 
             <div class="rowbox">
                 <p class="description"></p>
             </div>
 
-
-
+            
             <div class="verticleline"></div>
 
 
 
             <div class="columnbox">
 
+
                 <div class="temps">
                     <article>
                         <h3>Temperatur Dag:</h3>  
                         <p class="tempday"></p>
                     </article>
-                    <article style="margin-right: 5em";
-                    >
+                    <article style="margin-right: 5em;">
                         <h3>Omkrets: </h3>  
                         <p class="circumference"></p>
                     </article>
                 </div>
-
-
 
                 <div class="temps">
                     <article>
@@ -83,8 +89,7 @@
                         <p class="distance"></p>
                     </article>
                 </div>
-
-
+                
 
             </div>
 
@@ -97,7 +102,7 @@
                 <p class="moons"></p>
             </section>
 
-        </article>
+        </article> <!-- article class="infopanel" slut -->
 
     </section>
 

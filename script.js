@@ -73,7 +73,7 @@ const displayInfo = async () => {
 
     const solarInfo = await getInfo(apiKey);
 
-// (Main logiken bakom min kod). Matchar indexen i Query Selector Array (från line 13) med API array.
+// (Main logiken bakom min kod). Matchar indexen i Query Selector Array (från line 14) med API array.
 
     for (let i = 0; i < solarInfo.length; i++) {
         const planetData = solarInfo[i];

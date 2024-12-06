@@ -9,6 +9,7 @@ const jupiter = document.querySelector('.jupiter')
 const saturn = document.querySelector('.saturn')
 const uranus = document.querySelector('.uranus')
 const neptune = document.querySelector('.neptune')
+const header = document.querySelector('header')
 
 const planetArray = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
 
@@ -41,14 +42,13 @@ const distance = document.querySelector('.distance')
 const moons = document.querySelector('.moons')
 
 
-
 // Async / Await för att Fetcha Api
 
 const fetchKey = async () => {
     const response = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', {
         method: 'POST'
     })
-    
+
     const data = await response.json()
     const apiKey = data.key
     return apiKey
@@ -60,7 +60,7 @@ const getInfo = async (apiKey) => {
         method: 'GET',
         headers: {'x-zocom': apiKey}
     })
-    
+
     const data = await response.json()
     const solarInfo = data.bodies
     return solarInfo
@@ -73,26 +73,27 @@ const displayInfo = async () => {
 
     const solarInfo = await getInfo(apiKey);
 
-// Matchar indexen i Query Selector Array (från line 13) med API array
+// (Main logiken bakom min kod). Matchar indexen i Query Selector Array (från line 13) med API array.
 
     for (let i = 0; i < solarInfo.length; i++) {
         const planetData = solarInfo[i];
         const planetElement = planetArray[i];
 
-// Loopar och matchar båda indexen, när de är samma i båda arraysen så printas infon + öppnar Modal & döljer planeter
+// Event Listener som Loopar och matchar båda indexen, när de är samma i båda arraysen så printas infon + öppnar Modal & döljer planeter
 
         if (planetElement) {
 
             planetElement.addEventListener('click', () => {
                 solarSystem.style.visibility = 'hidden' // Gömmer planeterna (frontpage)
-                modal.style.display = 'flex'    // Öppnar Modal (info page) 
+                header.style.visibility = 'hidden' // Gömmer header
+                modal.style.display = 'flex'    // Öppnar Modal (info page)
 
                 planetName.textContent = `${planetData.name}`
                 latinName.textContent = `${planetData.latinName}`
                 planetDesc.textContent = `${planetData.desc}`
                 tempDay.textContent = ` ${planetData.temp.day} °C`
                 tempNight.textContent = `${planetData.temp.night} °C`
-                
+
             // Gör API numbers snyggare. Delar upp i dem istället för en klump
 
                 circumference.textContent = `${new Intl.NumberFormat('sv-SE', { useGrouping: true }).format(planetData.circumference)} km`;
@@ -101,7 +102,7 @@ const displayInfo = async () => {
             // Lägger till white space (mellanrum) mellan varje måne, istället för en klump
 
                 moons.textContent = `${planetData.moons.join(', ')}`;
-                
+
                 // Kopierar planeten man klickar pås CSS class och lägger den på planeten som finns i Modal
 
                 planetModal.className = `${planetElement.className}`
@@ -113,7 +114,7 @@ const displayInfo = async () => {
                     }
 
                     // Om man väljer solen står annan text på distance
-                    
+
                     if (planetElement === sun) {
                         distance.textContent = `☀️ ${planetData.name} är ${planetData.name} ☀️`
                     }
@@ -158,6 +159,7 @@ closeModalBtn.addEventListener('click', () => {
         mercury.style.marginLeft = '12em'
         sun.style.position = 'absolute'
         planetDesc.style.fontSize = "1.5em"
+        header.style.visibility = 'visible'
 })
 
 displayInfo()

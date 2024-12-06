@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background: linear-gradient(90deg, rgb(6, 0, 58) 0%, rgb(13, 8, 66) 59%, rgb(9, 0, 24) 100%);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+figure { /* Reset figure */
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    box-shadow: 5px 1px 10px black;
+}
+
+p {
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.solarsystem {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+.solarsystem > * {
+    cursor: pointer;
+}
+
+.solarsystem > *:hover {
+    animation: zoomplanet 0.5s alternate infinite;
+}
+
+.sun {
+    aspect-ratio: 1/1;
+    height: 50em;
+    left: -40em;
+    border-radius: 100%;
+    background: radial-gradient(circle, rgba(255,244,0,1) 0%, rgba(255,175,0,1) 35%, rgba(255,162,0,1) 100%);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    box-shadow: inset rgb(128, 30, 0) -20px -20px 70px;
+}
+
+.sun:hover {
+    animation: zoomsun 0.5s alternate infinite;
+}
+
+.mercury {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 5em;
+    background: linear-gradient(to bottom, #b1b1b1, #838383, #4d4d4d);
+    perspective: 1em;
+    transform-style: preserve-3d;
+    box-shadow: inset rgb(14, 14, 14) -0.5em -1em 2em;
+}
+
+.venus {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 5em;
+    background: linear-gradient(to bottom, #e3c16f, #d1a759, #b08b3e);
+    transform-style: preserve-3d;
+    box-shadow: inset rgb(14, 14, 14) -0.5em -0.5em 2em;
+}
+
+.earth {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 10em;
+    background: linear-gradient(
+    to bottom,
+    #0077be,   /* Ocean blue */
+    #00a36c,   /* Green for land */
+    #ffffff,   /* White for clouds */
+    #0077be    /* Ocean blue again */
+    );
+    box-shadow: inset rgb(14, 14, 14) -0.5em -0.5em 2.5em;
+}
+
+.mars {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 7em;
+    background: linear-gradient(to bottom, #c1440e, #8a2e0b, #5b1f07);
+    box-shadow: inset rgb(105, 0, 0) -0.5em -0.5em 2em;
+}
+
+.jupiter {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 17em;
+    background: linear-gradient(
+    to bottom,
+    #d9a066,  /* Beige band */
+    #9c5f27,  /* Orange band */
+    #6e3b1f,  /* Darker band */
+    #d9a066   /* Beige band again */
+    );
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    box-shadow: inset rgb(128, 30, 0) -20px -20px 70px;
+}
+
+.saturn {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 14em;
+    background: linear-gradient(
+    to bottom,
+    #f3e3b8,  /* Light yellow */
+    #d8c192,  /* Sandy yellow */
+    #b79e72   /* Muted gold */
+    );
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    box-shadow: inset rgb(14, 14, 14) -0.5em -1em 3em;
+    overflow: visible;
+}
+
+.ring {
+    width: 305px;
+    height: 305px;
+    border: solid 50px #b8b08d;
+    border-radius: 50%;
+    top: -95px; 
+    left: -100px; 
+    position: absolute;
+    transform: rotate3d(1, 0, 0, 75deg);
+    box-shadow: 2em 1em 1em solid black;
+}
+
+.uranus {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 12em;
+    background: linear-gradient(to bottom, #8fd9e1, #6dc7d3, #4ab1c1);
+    box-shadow: inset rgb(14, 14, 14) -0.5em -0.5em 2em;
+}
+
+.neptune {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    height: 11em;
+    background: linear-gradient(to bottom, #3b5c8a, #2c4476, #1d2c61);
+    box-shadow: inset rgb(14, 14, 14) -0.5em -0.5em 2em;
+}
